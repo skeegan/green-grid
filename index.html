@@ -90,6 +90,47 @@ h1{font-size:30px;font-weight:900;margin:0;letter-spacing:-.5px}
 @keyframes sh{25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
 .pop{animation:pp .25s}
 @keyframes pp{50%{transform:scale(1.08)}}
+/* subjects + Gaeilge */
+.stack{display:grid;gap:14px}.stack[hidden]{display:none}
+.seg{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:6px;background:var(--g0);padding:5px;border-radius:14px}
+.seg button{font:inherit;font-weight:900;font-size:16px;height:44px;border:0;border-radius:10px;background:transparent;color:var(--muted);cursor:pointer}
+.seg button.sel{background:var(--card);color:var(--fg)}
+.wk{display:flex;justify-content:space-between;align-items:center;gap:10px}
+.wk .v{font-size:28px;font-weight:900;line-height:1.1}.wk .v span{color:var(--muted);font-weight:700}
+.spk{font:inherit;font-size:20px;width:44px;height:44px;border-radius:999px;border:0;background:var(--acc);color:#fff;cursor:pointer}
+.spk[hidden]{display:none}
+.ggrid{display:grid;grid-template-columns:86px repeat(var(--cols),minmax(0,1fr));gap:4px;align-items:center;width:100%}
+.ggrid .h{font-size:12px;font-weight:900;color:var(--muted);text-align:center}
+.ggrid .r{font-size:15px;font-weight:900}
+.ggrid .c{height:34px;border-radius:6px;background:var(--g0);transition:background .3s}
+.ggrid .c.l1{background:var(--g1)}.ggrid .c.l2{background:var(--g2)}
+.ggrid .c.wide{grid-column:2 / -1}
+.ex{display:grid;gap:8px;font-size:16px}.ex small{display:block;color:var(--muted);font-size:14px}
+.gq{font-size:clamp(22px,6.5vw,28px);font-weight:900;line-height:1.2;padding-top:8px}
+.gq small{display:block;font-size:15px;color:var(--muted);font-weight:700;margin-top:4px}
+.tile{font:inherit;font-weight:900;font-size:18px;min-height:48px;padding:6px 14px;border-radius:12px;border:2px solid var(--line);background:var(--card);color:var(--fg);cursor:pointer}
+.tile.sel{border-color:var(--acc);background:var(--acc-bg);color:var(--acc)}
+.tile.ok{border-color:var(--g2);background:var(--g2);color:#fff}
+.tile.no{border-color:var(--no);background:var(--no-bg)}
+.tile:disabled{cursor:default}
+.tile:focus-visible,.seg button:focus-visible,.spk:focus-visible,.gin:focus-visible{outline:3px solid var(--fg);outline-offset:2px}
+.slot{display:flex;flex-wrap:wrap;gap:8px;min-height:66px;padding-bottom:10px;border-bottom:3px solid var(--line);align-content:flex-start}
+.bank{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:14px}
+.pairs{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:10px}
+.pairs .tile{min-height:56px;padding:6px 8px}
+.gapline{font-size:clamp(22px,6.5vw,26px);font-weight:900;line-height:1.5;margin-bottom:14px}
+.gapline u{text-decoration:none;display:inline-block;min-width:70px;border-bottom:4px solid var(--acc);color:var(--acc);text-align:center}
+.opts{display:grid;gap:8px}
+.gin{font:inherit;font-weight:900;font-size:20px;width:100%;height:60px;border-radius:14px;border:3px solid var(--acc);background:var(--card);color:var(--fg);padding:0 14px}
+.fada{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:8px;margin-top:10px}
+.fada .tile{padding:0;font-size:20px}
+.gact{display:grid;grid-template-columns:56px minmax(0,1fr);gap:10px;align-items:stretch}
+.gact .tile{padding:0;font-size:22px}
+.gact .big{padding:14px 10px}
+.gact .big[hidden]{display:none}
+.gfb{min-height:52px;font-size:17px;color:var(--muted)}
+.gfb.no{color:var(--fg);background:var(--no-bg);border-radius:14px;padding:12px}
+.gfb b{color:var(--ok)}.gfb.no b{color:var(--fg)}
 @media (prefers-reduced-motion: reduce){*{animation:none!important;transition:none!important}}
 </style>
 </head>
@@ -100,6 +141,17 @@ h1{font-size:30px;font-weight:900;margin:0;letter-spacing:-.5px}
 <!-- HOME -->
 <section class="screen on" id="home">
   <div class="top"><h1>Green Grid</h1><span class="row"><span class="pill" id="streakPill">🔥 <b id="days">0</b> days</span><button class="pill" id="gear" aria-label="Settings" style="font:inherit;cursor:pointer">⚙</button></span></div>
+  <div class="seg" id="subj"><button data-s="maths">Maths</button><button data-s="ga">Gaeilge</button></div>
+  <div class="stack" id="gaHome" hidden>
+    <div class="card wk"><div><div class="label">This week</div><div class="v"><b id="gaVerb">…</b> <span id="gaMean"></span></div></div><button class="spk" id="gaVerbSay" aria-label="Listen" hidden>🔊</button></div>
+    <div class="card">
+      <div class="ggrid" id="gaGrid"></div>
+      <div class="legend"><span><i style="background:var(--g0)"></i>not yet</span><span><i style="background:var(--g1)"></i>know it</span><span><i style="background:var(--g2)"></i>know it well</span></div>
+    </div>
+    <button class="big" id="goGa" disabled>Practise<small id="gaSub">no clock · build, fill, write</small></button>
+    <div class="card"><div class="label" style="margin-bottom:8px">Teacher's examples</div><div class="ex" id="gaEx"></div></div>
+  </div>
+  <div class="stack" id="mathsHome">
   <div class="card">
     <div class="grid" id="grid"></div>
     <div class="legend"><span><i style="background:var(--g0)"></i>not yet</span><span><i style="background:var(--g1)"></i>know it</span><span><i style="background:var(--g2)"></i>know it fast</span></div>
@@ -115,6 +167,7 @@ h1{font-size:30px;font-weight:900;margin:0;letter-spacing:-.5px}
     <div><div class="label">Tables</div><div class="row" id="tables"></div><button class="link" id="autoBack" style="font-size:13px;justify-self:start" hidden>Let the app choose again</button></div>
     <div><div class="label">Colour</div><div class="row" id="skins"></div></div>
     <button class="link" id="reset" style="justify-self:start">Start over</button>
+  </div>
   </div>
   <div class="card"><div class="label" style="margin-bottom:10px">Badges</div><div class="badges" id="badges"></div></div>
 </section>
@@ -136,10 +189,22 @@ h1{font-size:30px;font-weight:900;margin:0;letter-spacing:-.5px}
   <button class="link" id="quit">Stop for now</button>
 </section>
 
+<!-- GAEILGE SESSION -->
+<section class="screen" id="gaPlay">
+  <div class="top"><span class="pill" id="gaKind">Gaeilge</span><span class="pill"><b id="gaNum">1</b> / <span id="gaTot">12</span></span></div>
+  <div class="prog"><div id="gaProg" style="width:0%"></div></div>
+  <div class="gq" id="gaQ"></div>
+  <div id="gaBody"></div>
+  <div class="gfb" id="gaFb" aria-live="polite"></div>
+  <div class="card ex" id="gaHelp" hidden></div>
+  <div class="gact"><button class="tile" id="gaPeek" aria-label="Show the teacher's examples">?</button><button class="big" id="gaCheck">Check</button></div>
+  <button class="link" id="gaQuit">Stop for now</button>
+</section>
+
 <!-- SUMMARY -->
 <section class="screen" id="done">
   <h1 id="doneTitle">Nice one!</h1>
-  <div class="stat"><div><b id="sRight">0</b><small>right</small></div><div><b id="sNew">0</b><small>new cells</small></div><div><b id="sFast">0</b><small>fast ones</small></div></div>
+  <div class="stat"><div><b id="sRight">0</b><small>right</small></div><div><b id="sNew">0</b><small>new cells</small></div><div><b id="sFast">0</b><small id="sFastL">fast ones</small></div></div>
   <div class="card new" id="newList"></div>
   <div class="card" id="newBadges" hidden></div>
   <div class="btns"><button class="big" id="again">Again</button><button class="big" style="background:var(--muted)" id="homeBtn">Home</button></div>
@@ -243,7 +308,12 @@ function updateRace(){
 }
 function drawHome(){ advance(); drawGrid(); drawTables(); drawWorking(); drawSkins(); drawBadges(); updateRace();
   document.getElementById('days').textContent=S.days.length;
+  var ga=S.subject==='ga';
+  document.getElementById('mathsHome').hidden=ga; document.getElementById('gaHome').hidden=!ga;
+  document.querySelectorAll('#subj button').forEach(function(b){ b.classList.toggle('sel',b.dataset.s===(ga?'ga':'maths')); });
+  if(ga) gaDrawHome();
  }
+document.getElementById('subj').addEventListener('click',function(e){ var b=e.target.closest('button'); if(!b) return; S.subject=b.dataset.s; save(); drawHome(); });
 document.getElementById('gear').addEventListener('click',function(){ var p=document.getElementById('settings'); p.hidden=!p.hidden; document.getElementById('autoBack').hidden=S.auto; });
 document.getElementById('autoBack').addEventListener('click',function(){ S.auto=true; advance(); save(); drawHome(); });
 document.getElementById('reset').addEventListener('click',function(){ if(this.dataset.arm){ S=null; try{localStorage.removeItem(KEY)}catch(e){} load(); drawHome(); this.textContent='Start over'; delete this.dataset.arm; } else { this.dataset.arm='1'; this.textContent='Tap again to wipe everything'; } });
@@ -358,17 +428,23 @@ function miss(skipped){
 function timeout(){ if(locked) return; typed=''; miss(true); }
 
 document.getElementById('pad').addEventListener('click',function(e){ var b=e.target.closest('button'); if(!b) return; input(b.dataset.k||b.textContent.trim()); });
-document.addEventListener('keydown',function(e){ if(!document.getElementById('play').classList.contains('on')) return;
+document.addEventListener('keydown',function(e){ if(document.getElementById('gaPlay').classList.contains('on')){ if(e.key==='Enter'&&e.target.tagName==='INPUT'){ e.preventDefault(); document.getElementById('gaCheck').click(); } return; }
+  if(!document.getElementById('play').classList.contains('on')) return;
   if(/^[0-9]$/.test(e.key)) input(e.key); else if(e.key==='Backspace') input('del'); else if(e.key==='Enter'&&typed&&!locked) check(); });
 
-function finish(){
-  clearInterval(timerId);
-  S.sessions++;
+var lastSubject='maths';
+function markDay(){
   var today=new Date().toISOString().slice(0,10);
   if(S.days[S.days.length-1]!==today){
     var y=new Date(Date.now()-86400000).toISOString().slice(0,10);
     if(S.days[S.days.length-1]!==y) S.days=[]; S.days.push(today);
   }
+}
+function finish(){
+  clearInterval(timerId);
+  S.sessions++; lastSubject='maths';
+  document.getElementById('sFastL').textContent='fast ones';
+  markDay();
   var had12=S.had12; if(tensDone()&&!S.had12) S.had12=true;
   var moved=advance(); var got=checkBadges(); save();
   document.getElementById('doneTitle').textContent=right>=wrong*3?'Nice one!':'Good work.';
@@ -384,8 +460,203 @@ function finish(){
 document.getElementById('goPractice').addEventListener('click',function(){start('practice')});
 document.getElementById('goRace').addEventListener('click',function(){start('race')});
 document.getElementById('quit').addEventListener('click',function(){ finish(); });
-document.getElementById('again').addEventListener('click',function(){ start(mode); });
+document.getElementById('again').addEventListener('click',function(){ if(lastSubject==='ga') gaStart(); else start(mode); });
 document.getElementById('homeBtn').addEventListener('click',function(){ drawHome(); show('home'); });
+
+// ---------- Gaeilge: weekly packs, parallel sentences, four exercise types ----------
+var GA={packs:[],cur:null,err:false};
+var $=function(id){ return document.getElementById(id); };
+function gaS(){ if(!S.ga) S.ga={cells:{}}; return S.ga; }
+function gaNorm(s){ return String(s).toLowerCase().replace(/[’‘`´]/g,"'").replace(/[.?!,]/g,'').replace(/\s+/g,' ').replace(/' /g,"'").trim(); }
+function gaBare(s){ return gaNorm(s).normalize('NFD').replace(/[̀-ͯ]/g,''); }
+function pick(a){ return a[Math.floor(Math.random()*a.length)]; }
+function byId(a,id){ for(var i=0;i<a.length;i++) if(a[i].id===id) return a[i]; return null; }
+function first(v){ return [].concat(v)[0]; }
+function gaKey(p,c){ return p.id+'|'+c[0]+'|'+c[1]; }
+function gaCell(p,c){ var k=gaKey(p,c), m=gaS().cells; if(!m[k]) m[k]={s:0,t:0,n:0,w:0}; return m[k]; }
+// level: 0 not yet, 1 know it (2 right in a row, or written once), 2 know it well (written right twice)
+function gaLevel(p,c){ var x=gaS().cells[gaKey(p,c)]; if(!x) return 0; if(x.t>=2) return 2; if(x.s>=2||x.t>=1) return 1; return 0; }
+function gaPronouns(p){ return p.subjects.filter(function(s){return !s.as}); }
+function gaCells(p){ var out=[], pro=gaPronouns(p), solo=[];
+  p.frames.forEach(function(fr){ if(fr.noSubject) solo.push([fr.id,'-']); });
+  pro.forEach(function(su,i){ p.frames.forEach(function(fr){ if(!fr.noSubject) out.push([fr.id,su.id]); }); if(i===0) out=out.concat(solo); });
+  return out; }
+function gaMake(p,c){
+  var fr=byId(p.frames,c[0]);
+  for(var tries=0;tries<40;tries++){
+    var su=null;
+    if(!fr.noSubject){ su=byId(p.subjects,c[1]); var st=p.subjects.filter(function(x){return x.as===c[1]}); if(st.length&&Math.random()<0.35) su=pick(st); }
+    var n=pick(p.nouns), forms=(fr.forms||['the','my','your','plain']).filter(function(f){return n[f]});
+    if(!forms.length) continue;
+    var fm=pick(forms), objs=[].concat(n[fm]);
+    var alts=objs.map(function(o){ return fr.lead+(su?' '+su.ga:'')+' '+o+fr.end; });
+    if(alts.some(function(a){ return p.avoidN.indexOf(gaNorm(a))>=0; })) continue;
+    var enO=fm==='plain'?n.en:fm+' '+n.en;
+    var en=fr.en.replace('{S}',su?su.en:'').replace('{s}',su?su.enMid:'').replace('{o}',enO);
+    return {p:p,fr:fr,su:su,cell:c,ga:alts[0],alts:alts,en:en,obj:objs[0],noun:n,form:fm};
+  }
+  return null;
+}
+function gaLoad(){
+  fetch('gaeilge/packs/index.json').then(function(r){ return r.json(); }).then(function(ix){
+    return Promise.all(ix.packs.map(function(id){ return fetch('gaeilge/packs/'+id+'.json').then(function(r){ return r.json(); }); }));
+  }).then(function(ps){
+    ps.forEach(function(p){ p.avoidN=(p.avoid||[]).map(gaNorm); p.audio=p.audio||{}; });
+    GA.packs=ps; GA.cur=ps[ps.length-1]; if(S.subject==='ga') gaDrawHome();
+  }).catch(function(){ GA.err=true; if(S.subject==='ga') gaDrawHome(); });
+}
+function say(p,text){ var f=p&&p.audio&&p.audio[gaNorm(text)]; if(!f) return; try{ new Audio('gaeilge/audio/'+p.id+'/'+f).play().catch(function(){}); }catch(e){} }
+function gaDrawHome(){
+  var p=GA.cur, go=$('goGa');
+  if(!p){ $('gaVerb').textContent=GA.err?'Couldn’t load':'…'; $('gaMean').textContent=GA.err?'this week’s pack':''; go.disabled=true; return; }
+  go.disabled=false;
+  $('gaVerb').textContent=p.verb; $('gaMean').textContent=p.meaning;
+  $('gaVerbSay').hidden=!p.audio[gaNorm(p.verb)];
+  var g=$('gaGrid'), pro=gaPronouns(p); g.style.setProperty('--cols',pro.length); g.innerHTML='';
+  function add(cls,txt,title){ var d=document.createElement('div'); d.className=cls; if(txt) d.textContent=txt; if(title) d.title=title; g.appendChild(d); return d; }
+  add('h',''); pro.forEach(function(s){ add('h',s.ga); });
+  p.frames.forEach(function(fr){ add('r',fr.label);
+    if(fr.noSubject) add('c wide l'+gaLevel(p,[fr.id,'-']),'',fr.lead);
+    else pro.forEach(function(s){ add('c l'+gaLevel(p,[fr.id,s.id]),'',fr.lead+' '+s.ga); }); });
+  $('gaEx').innerHTML=''; p.examples.forEach(function(e){ var d=document.createElement('div'); d.textContent=e.ga; var s=document.createElement('small'); s.textContent=e.en; d.appendChild(s); $('gaEx').appendChild(d); });
+}
+$('gaVerbSay').addEventListener('click',function(){ if(GA.cur) say(GA.cur,GA.cur.verb); });
+
+var gq,gi,gcur,gRight,gWrong,gNew,gTyped,gWait,gState;
+function gaBuild(){
+  var p=GA.cur, cells=gaCells(p);
+  var fresh=cells.filter(function(c){return gaLevel(p,c)===0}).slice(0,3);
+  var known=shuffle(cells.filter(function(c){return gaLevel(p,c)>=1})).sort(function(a,b){return gaLevel(p,a)-gaLevel(p,b)}).map(function(c){return {kind:'type',p:p,cell:c}});
+  var old=[]; GA.packs.slice(0,-1).forEach(function(op){ gaCells(op).forEach(function(c){ if(gaLevel(op,c)>=1) old.push({kind:'type',p:op,cell:c}); }); });
+  var rev=shuffle(old).slice(0,2).concat(known);
+  var a=[],b=[],c=[];
+  fresh.forEach(function(x){ a.push({kind:'build',p:p,cell:x}); b.push({kind:'gap',p:p,cell:x}); c.push({kind:'type',p:p,cell:x}); });
+  var q=[{kind:'match',p:p}].concat(a,shuffle(b.concat(rev.slice(0,2))),shuffle(c.concat(rev.slice(2,4))));
+  for(var i=4;q.length<12&&rev.length&&i<40;i++) q.push(rev[i%rev.length]);
+  q=q.slice(0,12);
+  q.forEach(function(x){ if(x.kind!=='match') x.it=gaMake(x.p,x.cell); });
+  return q.filter(function(x){ return x.kind==='match'||x.it; });
+}
+function gaStart(){ if(!GA.cur) return; gq=gaBuild(); gi=0; gRight=0; gWrong=0; gNew=[]; gTyped=0; $('gaTot').textContent=gq.length; show('gaPlay'); gaNext(); }
+function gaHelpFill(p){ var h=$('gaHelp'); h.innerHTML=''; p.examples.forEach(function(e){ var d=document.createElement('div'); d.textContent=e.ga; var s=document.createElement('small'); s.textContent=e.en; d.appendChild(s); h.appendChild(d); }); }
+function gaNext(){
+  if(gi>=gq.length) return gaFinish();
+  gcur=gq[gi]; gWait=false; gState={};
+  $('gaNum').textContent=gi+1; $('gaTot').textContent=gq.length; $('gaProg').style.width=(gi/gq.length*100)+'%';
+  $('gaFb').className='gfb'; $('gaFb').textContent=''; $('gaHelp').hidden=true; gaHelpFill(gcur.p);
+  var ck=$('gaCheck'); ck.textContent='Check'; ck.hidden=(gcur.kind==='match'||gcur.kind==='gap');
+  $('gaBody').innerHTML='';
+  ({match:gaMatch,build:gaBuildQ,gap:gaGap,type:gaType})[gcur.kind]();
+  window.scrollTo(0,0);
+}
+function el(tag,cls,txt){ var d=document.createElement(tag); if(cls) d.className=cls; if(txt!=null) d.textContent=txt; return d; }
+function gaSetQ(kind,text,sub){ $('gaKind').textContent=kind; var q=$('gaQ'); q.textContent=text; if(sub){ q.appendChild(el('small','',sub)); } }
+
+// 1. match pairs
+function gaMatch(){
+  var p=gcur.p, pool=[];
+  p.subjects.forEach(function(s){ pool.push({ga:s.ga,en:s.enMid}); });
+  p.frames.forEach(function(f){ pool.push({ga:f.lead,en:f.leadEn}); });
+  p.nouns.forEach(function(n){ var fs=['the','my','your'].filter(function(f){return n[f]}); var f=pick(fs); pool.push({ga:first(n[f]),en:f+' '+n.en}); });
+  var seen={}, pairs=[]; shuffle(pool).forEach(function(x){ if(pairs.length<5&&!seen[x.ga]&&!seen[x.en]){ seen[x.ga]=seen[x.en]=1; pairs.push(x); } });
+  gaSetQ('Match the pairs','Tap the Irish, then its meaning');
+  var box=el('div','pairs'), L=shuffle(pairs.slice()), R=shuffle(pairs.slice()), selG=null, selE=null, left=pairs.length;
+  function judge(){ if(!selG||!selE) return;
+    if(selG.pair===selE.pair){ [selG,selE].forEach(function(b){ b.className='tile ok'; b.disabled=true; }); left--; selG=selE=null;
+      if(!left){ gRight++; $('gaFb').innerHTML='<b>All matched!</b>'; setTimeout(function(){ gi++; gaNext(); },700); } }
+    else { var e=selE, g2=selG; e.classList.add('no','shake'); setTimeout(function(){ e.classList.remove('no','shake','sel'); g2.classList.remove('sel'); },400); selG=selE=null; } }
+  for(var i=0;i<pairs.length;i++){ (function(g,e){
+    var bg=el('button','tile',g.ga); bg.pair=g; bg.lang='ga';
+    bg.addEventListener('click',function(){ if(selG) selG.classList.remove('sel'); selG=bg; bg.classList.add('sel'); say(p,g.ga); judge(); });
+    var be=el('button','tile',e.en); be.pair=e; be.style.fontWeight='700';
+    be.addEventListener('click',function(){ if(selE) selE.classList.remove('sel'); selE=be; be.classList.add('sel'); judge(); });
+    box.appendChild(bg); box.appendChild(be); })(L[i],R[i]); }
+  $('gaBody').appendChild(box);
+}
+// 2. build from tiles
+function gaBuildQ(){
+  var it=gcur.it, p=it.p;
+  gaSetQ('Build the sentence',it.en);
+  var ans=it.fr.tiles.slice(); if(it.su) ans.push(it.su.ga); ans.push(it.obj);
+  var have={}; ans.forEach(function(t){ have[t.toLowerCase()]=1; });
+  var decoys=[];
+  p.frames.forEach(function(f){ f.tiles.forEach(function(t){ if(!have[t.toLowerCase()]&&decoys.length<2){ have[t.toLowerCase()]=1; decoys.push(t); } }); });
+  if(it.su){ var os=shuffle(gaPronouns(p).filter(function(s){return !have[s.ga.toLowerCase()]})); if(os.length) decoys.push(os[0].ga); }
+  var on=shuffle(p.nouns.filter(function(n){return n!==it.noun})); if(on.length){ var f=pick(['the','my','your'].filter(function(k){return on[0][k]})); decoys.push(first(on[0][f])); }
+  var tiles=shuffle(ans.concat(decoys)).map(function(t,i){ return {t:t,i:i,used:false}; });
+  var chosen=[], slot=el('div','slot'), bank=el('div','bank');
+  function draw(){ slot.innerHTML=''; bank.innerHTML='';
+    chosen.forEach(function(x){ var b=el('button','tile sel',x.t); b.lang='ga'; b.addEventListener('click',function(){ if(gWait) return; x.used=false; chosen.splice(chosen.indexOf(x),1); draw(); }); slot.appendChild(b); });
+    tiles.forEach(function(x){ if(x.used) return; var b=el('button','tile',x.t); b.lang='ga'; b.addEventListener('click',function(){ if(gWait) return; x.used=true; chosen.push(x); draw(); }); bank.appendChild(b); }); }
+  draw(); $('gaBody').appendChild(slot); $('gaBody').appendChild(bank);
+  gState.check=function(){ if(!chosen.length){ $('gaFb').textContent='Tap the tiles to build the sentence.'; return; }
+    var got=gaNorm(chosen.map(function(x){return x.t}).join(' '));
+    gaResult(it.alts.some(function(a){return gaNorm(a)===got}),false); };
+}
+// 3. fill the gap
+function gaGap(){
+  var it=gcur.it, p=it.p, leads=p.frames.filter(function(f){return !f.noSubject});
+  gaSetQ('Fill the gap',it.en);
+  var opts, line=el('div','gapline'), u=el('u','',' '), right;
+  if(!it.fr.noSubject&&leads.length>1){ right=it.fr.lead; opts=leads.map(function(f){return {t:f.lead,fr:f}});
+    line.appendChild(u); line.appendChild(document.createTextNode(' '+it.su.ga+' '+it.obj+it.fr.end)); }
+  else { right=it.obj; opts=['the','my','your','plain'].filter(function(k){return it.noun[k]}).map(function(k){return {t:first(it.noun[k])}});
+    line.appendChild(document.createTextNode(it.fr.lead+' ')); line.appendChild(u); line.appendChild(document.createTextNode(it.fr.end)); }
+  line.lang='ga';
+  var box=el('div','opts');
+  shuffle(opts).forEach(function(o){ var b=el('button','tile',o.t); b.lang='ga';
+    b.addEventListener('click',function(){ if(gWait) return; u.textContent=o.t; var ok=o.t===right; b.classList.add(ok?'ok':'no');
+      var why=''; if(!ok) why=o.fr? o.fr.hint+' Here you need '+right+'.' : 'Look for the word that means '+(it.form==='plain'?it.noun.en:it.form+' '+it.noun.en)+'.';
+      gaResult(ok,false,why); });
+    box.appendChild(b); });
+  $('gaBody').appendChild(line); $('gaBody').appendChild(box);
+}
+// 4. type it
+function gaType(){
+  var it=gcur.it, c=gaCell(it.p,it.cell);
+  var hint=c.t<1? '('+(it.su&&it.su.as?it.su.ga+', ':'')+it.obj+')' : (it.su&&it.su.as?'('+it.su.ga+')':'');
+  gaSetQ('Write it in Irish',it.en,hint);
+  var inp=el('input','gin'); inp.type='text'; inp.lang='ga'; inp.autocomplete='off'; inp.autocapitalize='sentences'; inp.spellcheck=false; inp.setAttribute('autocorrect','off'); inp.setAttribute('aria-label','Your answer in Irish');
+  var row=el('div','fada');
+  ['á','é','í','ó','ú'].forEach(function(ch){ var b=el('button','tile',ch); b.setAttribute('aria-label','Type '+ch);
+    b.addEventListener('mousedown',function(e){ e.preventDefault(); });
+    b.addEventListener('click',function(){ if(gWait) return; var s=inp.selectionStart==null?inp.value.length:inp.selectionStart, e2=inp.selectionEnd==null?s:inp.selectionEnd; inp.value=inp.value.slice(0,s)+ch+inp.value.slice(e2); inp.focus(); inp.setSelectionRange(s+1,s+1); });
+    row.appendChild(b); });
+  $('gaBody').appendChild(inp); $('gaBody').appendChild(row);
+  gState.check=function(){ var v=inp.value; if(!gaNorm(v)){ $('gaFb').textContent='Write your answer first.'; inp.focus(); return; }
+    var exact=it.alts.some(function(a){return gaNorm(a)===gaNorm(v)}), near=!exact&&it.alts.some(function(a){return gaBare(a)===gaBare(v)});
+    inp.readOnly=true; gaResult(exact||near,near); };
+  setTimeout(function(){ inp.focus(); },50);
+}
+function gaResult(ok,near,why){
+  var it=gcur.it, c=gaCell(it.p,it.cell), before=gaLevel(it.p,it.cell), fb=$('gaFb'), ck=$('gaCheck');
+  gWait=true; c.n++;
+  if(ok){ c.s++; gRight++; if(gcur.kind==='type'){ c.t++; gTyped++; } if(c.w>0) S.fixed=true;
+    var after=gaLevel(it.p,it.cell); if(after>before) gNew.push([it,after]);
+    fb.className='gfb'; fb.innerHTML=near?'<b>Nearly!</b> Watch the fadas: ':'<b>Yes!</b> '; fb.appendChild(document.createTextNode(it.ga));
+  } else { c.s=0; c.w++; if(gcur.kind==='type') c.t=Math.max(0,c.t-1); gWrong++;
+    fb.className='gfb no'; fb.innerHTML='<b>Not quite.</b> '; fb.appendChild(document.createTextNode((why?why+' ':'')+'It’s: '+it.ga));
+    if(!gcur.re){ var pos=Math.min(gq.length,gi+2+Math.floor(Math.random()*3)); gq.splice(pos,0,{kind:'build',p:it.p,cell:it.cell,it:it,re:true}); }
+  }
+  save(); say(it.p,it.ga);
+  ck.hidden=false; ck.textContent='Next'; ck.focus();
+}
+$('gaCheck').addEventListener('click',function(){ if(gWait){ gi++; gaNext(); } else if(gState&&gState.check) gState.check(); });
+$('gaPeek').addEventListener('click',function(){ var h=$('gaHelp'); h.hidden=!h.hidden; });
+$('gaQuit').addEventListener('click',function(){ gaFinish(); });
+function gaFinish(){
+  lastSubject='ga'; markDay(); var got=checkBadges(); save();
+  $('doneTitle').textContent=gRight>=gWrong*3?'Maith thú!':'Good work.';
+  $('sRight').textContent=gRight; $('sNew').textContent=gNew.length; $('sFast').textContent=gTyped; $('sFastL').textContent='written';
+  var nl=$('newList'); nl.innerHTML=''; nl.hidden=false;
+  if(gNew.length) gNew.forEach(function(x){ var it=x[0]; nl.appendChild(el('span','',it.fr.lead+(it.fr.noSubject?'':' '+byId(it.p.subjects,it.cell[1]).ga)+(x[1]===2?'  — now green':'  — now amber'))); });
+  else nl.appendChild(el('span','','Come back tomorrow to turn more of the grid green.'));
+  var nb=$('newBadges'); if(got.length){ nb.hidden=false; nb.innerHTML='<div class="label" style="margin-bottom:8px">New badge'+(got.length>1?'s':'')+'</div>'+got.map(function(g){return '<div style="font-size:18px">'+g[1]+' '+g[2]+' <span style="color:var(--muted);font-size:14px">— '+g[3]+'</span></div>'}).join(''); } else nb.hidden=true;
+  show('done');
+}
+$('goGa').addEventListener('click',gaStart);
+if(S.subject!=='ga') S.subject='maths';
+gaLoad();
 drawHome();
 })();
 </script>

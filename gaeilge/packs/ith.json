@@ -1,0 +1,234 @@
+{
+ "id": "ith",
+ "verb": "ith",
+ "meaning": "eat",
+ "week": "2026-11-23",
+ "examples": [
+  {
+   "ga": "Ar ith tú na milseáin?",
+   "en": "Did you eat the sweets?"
+  },
+  {
+   "ga": "D'ith mé iad.",
+   "en": "I ate them."
+  },
+  {
+   "ga": "Níor ith sé iad.",
+   "en": "He didn't eat them."
+  },
+  {
+   "ga": "Ith do lón!",
+   "en": "Eat your lunch! (bossy verb)"
+  }
+ ],
+ "frames": [
+  {
+   "id": "past",
+   "label": "D'ith…",
+   "lead": "D'ith",
+   "leadEn": "ate",
+   "tiles": [
+    "D'ith"
+   ],
+   "end": ".",
+   "en": "{S} ate {o}.",
+   "hint": "D'ith means ate."
+  },
+  {
+   "id": "neg",
+   "label": "Níor ith…",
+   "lead": "Níor ith",
+   "leadEn": "didn't eat",
+   "tiles": [
+    "Níor",
+    "ith"
+   ],
+   "end": ".",
+   "en": "{S} didn't eat {o}.",
+   "hint": "Níor ith means didn't eat."
+  },
+  {
+   "id": "q",
+   "label": "Ar ith…?",
+   "lead": "Ar ith",
+   "leadEn": "did … eat?",
+   "tiles": [
+    "Ar",
+    "ith"
+   ],
+   "end": "?",
+   "en": "Did {s} eat {o}?",
+   "hint": "Ar ith asks a question: did … eat?"
+  },
+  {
+   "id": "cmd",
+   "label": "Ith…!",
+   "lead": "Ith",
+   "leadEn": "eat!",
+   "tiles": [
+    "Ith"
+   ],
+   "end": "!",
+   "en": "Eat {o}!",
+   "noSubject": true,
+   "forms": [
+    "the",
+    "your",
+    "plain"
+   ],
+   "hint": "Ith on its own is the bossy verb: eat!"
+  }
+ ],
+ "subjects": [
+  {
+   "id": "mé",
+   "ga": "mé",
+   "en": "I",
+   "enMid": "I"
+  },
+  {
+   "id": "tú",
+   "ga": "tú",
+   "en": "You",
+   "enMid": "you"
+  },
+  {
+   "id": "sé",
+   "ga": "sé",
+   "en": "He",
+   "enMid": "he"
+  },
+  {
+   "id": "sí",
+   "ga": "sí",
+   "en": "She",
+   "enMid": "she"
+  },
+  {
+   "id": "siad",
+   "ga": "siad",
+   "en": "They",
+   "enMid": "they"
+  },
+  {
+   "id": "sibh",
+   "ga": "sibh",
+   "en": "You all",
+   "enMid": "you all"
+  },
+  {
+   "id": "madra",
+   "ga": "an madra",
+   "en": "The dog",
+   "enMid": "the dog",
+   "as": "sé"
+  },
+  {
+   "id": "cat",
+   "ga": "an cat",
+   "en": "The cat",
+   "enMid": "the cat",
+   "as": "sé"
+  },
+  {
+   "id": "seán",
+   "ga": "Seán",
+   "en": "Seán",
+   "enMid": "Seán",
+   "as": "sé"
+  },
+  {
+   "id": "mamaí",
+   "ga": "Mamaí",
+   "en": "Mammy",
+   "enMid": "Mammy",
+   "as": "sí"
+  }
+ ],
+ "nouns": [
+  {
+   "en": "apple",
+   "the": [
+    "an úll",
+    "an t-úll"
+   ],
+   "my": "m'úll",
+   "your": "d'úll"
+  },
+  {
+   "en": "cake",
+   "the": "an cáca",
+   "my": "mo cháca",
+   "your": "do cháca",
+   "plain": "cáca"
+  },
+  {
+   "en": "cabbage",
+   "the": "an cabáiste",
+   "my": "mo chabáiste",
+   "your": "do chabáiste",
+   "plain": "cabáiste"
+  },
+  {
+   "en": "dinner",
+   "my": "mo dhinnéar",
+   "your": "do dhinnéar"
+  },
+  {
+   "en": "lunch",
+   "my": "mo lón",
+   "your": "do lón"
+  },
+  {
+   "en": "sweets",
+   "the": "na milseáin",
+   "my": "mo mhilseáin",
+   "your": "do mhilseáin"
+  },
+  {
+   "en": "homework",
+   "my": "m'obair bhaile",
+   "your": "d'obair bhaile"
+  },
+  {
+   "en": "banana",
+   "the": "an banana",
+   "my": "mo bhanana",
+   "your": "do bhanana"
+  },
+  {
+   "en": "sandwich",
+   "the": "an ceapaire",
+   "my": "mo cheapaire",
+   "your": "do cheapaire"
+  },
+  {
+   "en": "pizza",
+   "the": "an píotsa",
+   "my": "mo phíotsa",
+   "your": "do phíotsa",
+   "plain": "píotsa"
+  },
+  {
+   "en": "breakfast",
+   "my": "mo bhricfeasta",
+   "your": "do bhricfeasta"
+  }
+ ],
+ "avoid": [
+  "Ar ith tú an úll?",
+  "Ar ith tú an t-úll?",
+  "D'ith sí an cáca.",
+  "D'ith an madra m'obair bhaile.",
+  "Níor ith mé an úll.",
+  "Níor ith mé an t-úll.",
+  "Ith do dhinnéar!",
+  "Ar ith an madra d'obair bhaile?",
+  "Níor ith sí an cáca.",
+  "Ith an cabáiste!",
+  "Ar ith siad cáca?",
+  "Níor ith siad cáca.",
+  "D'ith sibh cabáiste."
+ ],
+ "audio": {}
+}
